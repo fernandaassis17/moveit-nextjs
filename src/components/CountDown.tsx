@@ -1,12 +1,17 @@
 import { isAssetError } from 'next/dist/client/route-loader'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { ChallengesContext } from '../contexts/ChallengesContext'
 import styles from '../styles/components/CountDowm.module.css'
 
 
 let countDownTimeout: NodeJS.Timeout
 
 
+
 export function CountDowm() {
+
+    const { startNewChallenge } = useContext(ChallengesContext)
+
     const [time, setTime] = useState(0.1 * 60)
     const [isactive, setIsActive] = useState(false)
     const [hasFinished, setHasFinished] = useState(false)
@@ -31,6 +36,7 @@ export function CountDowm() {
         else if (isactive && time === 0) {
             setHasFinished(true)
             setIsActive(false)
+            startNewChallenge()
         }
     }, [isactive, time])
 
