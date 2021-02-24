@@ -12,7 +12,7 @@ export function CountDowm() {
 
     const { startNewChallenge } = useContext(ChallengesContext)
 
-    const [time, setTime] = useState(0.1 * 60)
+    const [time, setTime] = useState(25 * 60)
     const [isactive, setIsActive] = useState(false)
     const [hasFinished, setHasFinished] = useState(false)
 
@@ -44,7 +44,7 @@ export function CountDowm() {
     function resetCountDown() {
         clearTimeout(countDownTimeout)
         setIsActive(false)
-        setTime(0.1 * 60)
+        setTime(25 * 60)
     }
 
     return (
@@ -65,8 +65,10 @@ export function CountDowm() {
                 <button
                     disabled
                     className={styles.countdownButton}
+
                 >
                     Ciclo encerrado
+                    <img src="icons/check.svg" alt="" />
                 </button >
             ) : (
                     <>
@@ -77,7 +79,7 @@ export function CountDowm() {
                                 className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
                                 onClick={resetCountDown}
                             >
-                                Abandonar um ciclo
+                                Abandonar um ciclo  <img src="icons/stop.svg" alt="" />
                             </button >) : (
 
                                 <button
@@ -86,6 +88,7 @@ export function CountDowm() {
                                     onClick={startCountDown}
                                 >
                                     Iniciar um ciclo
+                                    <img src="icons/play.svg" alt="" />
                                 </button>
                             )}
                     </>
