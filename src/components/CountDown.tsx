@@ -1,51 +1,22 @@
-import { isAssetError } from 'next/dist/client/route-loader'
-import { useState, useEffect, useContext } from 'react'
-import { ChallengesContext } from '../contexts/ChallengesContext'
+import { useContext } from 'react'
+import { CountdowmContext } from '../contexts/CountDownContext'
 import styles from '../styles/components/CountDowm.module.css'
-
-
-let countDownTimeout: NodeJS.Timeout
-
 
 
 export function CountDowm() {
 
-    const { startNewChallenge } = useContext(ChallengesContext)
-
-    const [time, setTime] = useState(25 * 60)
-    const [isactive, setIsActive] = useState(false)
-    const [hasFinished, setHasFinished] = useState(false)
-
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
+  const { 
+    minutes, 
+    seconds, 
+    hasFinished, 
+    isactive, 
+    startCountDown, 
+    resetCountDown  
+    } = useContext(CountdowmContext)
 
     const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('')
     const [secondsLeft, secondsRight] = String(seconds).padStart(2, '0').split('')
 
-
-    function startCountDown() {
-        setIsActive(true)
-    }
-
-    useEffect(() => {
-        if (isactive && time > 0) {
-            countDownTimeout = setTimeout(() => {
-                setTime(time - 1);
-            }, 1000)
-        }
-        else if (isactive && time === 0) {
-            setHasFinished(true)
-            setIsActive(false)
-            startNewChallenge()
-        }
-    }, [isactive, time])
-
-
-    function resetCountDown() {
-        clearTimeout(countDownTimeout)
-        setIsActive(false)
-        setTime(25 * 60)
-    }
 
     return (
         <div>
