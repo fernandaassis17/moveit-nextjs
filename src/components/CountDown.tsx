@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { CountdowmContext } from '../contexts/CountDownContext'
+import { CountdowmContext } from '../contexts/CountdownContext'
 import styles from '../styles/components/CountDowm.module.css'
 
 

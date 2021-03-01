@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { ChallengesContext } from '../contexts/ChallengesContext'
-import { CountdowmContext } from '../contexts/CountDownContext'
+import { CountdowmContext } from '../contexts/CountdownContext'
 import styles from '../styles/components/ChallengeBox.module.css'
 
 export function ChallengeBox() {
@@ -13,7 +13,7 @@ export function ChallengeBox() {
     }
 
     function handleChallengeFailed() {
-        completeChallenge()
+        resetChallenge()
         resetCountDown()
     }
 
@@ -51,6 +51,7 @@ export function ChallengeBox() {
                         <strong>Inicie um ciclo
                                 para receber desafios</strong>
                         <p>
+                        <img src={'icons/level-up.svg'} />
                     Avance de level completando desafios
                 </p>
                     </div>
